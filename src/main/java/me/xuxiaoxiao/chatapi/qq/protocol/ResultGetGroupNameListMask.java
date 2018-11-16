@@ -33,12 +33,12 @@ public class ResultGetGroupNameListMask {
         public long gid;
         public long code;
         public String name;
-        public int flag;
+        public long flag;
     }
 
     public static class GMask {
         public long gid;
-        public int mask;
+        public long mask;
     }
 
     public static class GMark {
