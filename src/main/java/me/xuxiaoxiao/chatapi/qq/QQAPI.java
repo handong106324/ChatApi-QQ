@@ -34,12 +34,12 @@ final class QQAPI {
         request.query("mibao_css", "m_webqq");
         request.query("no_verifyimg", 1);
         request.query("pt_disable_pwd", 1);
-        request.query("s_url", "http://web2.qq.com/proxy.html");
+        request.query("s_url", "https://web2.qq.com/proxy.html");
         request.query("strong_login", 1);
         request.query("style", 40);
         request.query("t", 20131024001L);
         request.query("target", "self");
-        request.header("Referer", "http://web2.qq.com/");
+        request.header("Referer", "https://web2.qq.com/");
         XTools.http(httpOption, request);
     }
 
@@ -60,7 +60,7 @@ final class QQAPI {
         request.query("s", 3);
         request.query("t", Math.random());
         request.query("v", 4);
-        request.header("Referer", "https://xui.ptlogin2.qq.com/cgi-bin/xlogin?daid=164&target=self&style=40&pt_disable_pwd=1&mibao_css=m_webqq&appid=501004106&enable_qlogin=0&no_verifyimg=1&s_url=http://web2.qq.com/proxy.html&f_url=loginerroralert&strong_login=1&login_state=10&t=20131024001");
+        request.header("Referer", "https://xui.ptlogin2.qq.com/cgi-bin/xlogin?daid=164&target=self&style=40&pt_disable_pwd=1&mibao_css=m_webqq&appid=501004106&enable_qlogin=0&no_verifyimg=1&s_url=https://web2.qq.com/proxy.html&f_url=loginerroralert&strong_login=1&login_state=10&t=20131024001");
         return XTools.http(httpOption, request).file(path);
     }
 
@@ -86,7 +86,7 @@ final class QQAPI {
         request.query("ptqrtoken", QQTools.hashQRSig(qrsig));
         request.query("ptredirect", 0);
         request.query("t", 1);
-        request.query("u1", "http://web2.qq.com/proxy.html");
+        request.query("u1", "https://web2.qq.com/proxy.html");
         request.header("Referer", "https://xui.ptlogin2.qq.com/cgi-bin/xlogin?daid=164&target=self&style=40&pt_disable_pwd=1&mibao_css=m_webqq&appid=501004106&enable_qlogin=0&no_verifyimg=1&s_url=http%3A%2F%2Fweb2.qq.com%2Fproxy.html&f_url=loginerroralert&strong_login=1&login_state=10&t=20131024001");
         return new RspQRLogin(XTools.http(httpOption, request).string());
     }
@@ -105,12 +105,12 @@ final class QQAPI {
      * 获取重要参数vfwebqq
      */
     void getvfwebqq() {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/getvfwebqq");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/getvfwebqq");
         request.query("clientid", 53999199);
         request.query("psessionid", "");
         request.query("ptwebqq", "");
         request.query("t", System.currentTimeMillis());
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         BaseRsp<ResultVFWebqq> resultVFWebqq = QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultVFWebqq>>() {
         }.getType());
         this.vfwebqq = resultVFWebqq.result.vfwebqq;
@@ -122,9 +122,9 @@ final class QQAPI {
      * @return 登录返回信息
      */
     BaseRsp<ResultLogin> login2() {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/login2");
-        request.header("Origin", "http://d1.web2.qq.com");
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/login2");
+        request.header("Origin", "https://d1.web2.qq.com");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         request.content("r", QQTools.GSON.toJson(new BaseReq(null, "", vfwebqq, "")));
         BaseRsp<ResultLogin> resultLogin = QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultLogin>>() {
         }.getType());
@@ -139,9 +139,9 @@ final class QQAPI {
      * @return 获取自身信息返回信息
      */
     BaseRsp<ResultUser> get_self_info2() {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/get_self_info2");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/get_self_info2");
         request.query("t", System.currentTimeMillis());
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultUser>>() {
         }.getType());
     }
@@ -152,9 +152,9 @@ final class QQAPI {
      * @return 获取用户好友列表返回信息
      */
     BaseRsp<ResultGetUserFriends> get_user_friends2() {
-        XRequest request = XRequest.POST("http://s.web2.qq.com/api/get_user_friends2");
-        request.header("Origin", "http://s.web2.qq.com");
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        XRequest request = XRequest.POST("https://s.web2.qq.com/api/get_user_friends2");
+        request.header("Origin", "https://s.web2.qq.com");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         request.content("r", QQTools.GSON.toJson(new BaseReq(QQTools.hash(qqStr, ""), null, vfwebqq, null)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetUserFriends>>() {
         }.getType());
@@ -166,9 +166,9 @@ final class QQAPI {
      * @return 获取用户群列表返回信息
      */
     BaseRsp<ResultGetGroupNameListMask> get_group_name_list_mask2() {
-        XRequest request = XRequest.POST("http://s.web2.qq.com/api/get_group_name_list_mask2");
-        request.header("Origin", "http://s.web2.qq.com");
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        XRequest request = XRequest.POST("https://s.web2.qq.com/api/get_group_name_list_mask2");
+        request.header("Origin", "https://s.web2.qq.com");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         request.content("r", QQTools.GSON.toJson(new BaseReq(QQTools.hash(qqStr, ""), null, vfwebqq, null)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetGroupNameListMask>>() {
         }.getType());
@@ -180,12 +180,12 @@ final class QQAPI {
      * @return 获取用户讨论组列表返回信息
      */
     BaseRsp<ResultGetDiscusList> get_discus_list() {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/get_discus_list");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/get_discus_list");
         request.query("clientid", 53999199);
         request.query("psessionid", psessionid);
         request.query("t", System.currentTimeMillis());
         request.query("vfwebqq", vfwebqq);
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetDiscusList>>() {
         }.getType());
     }
@@ -196,9 +196,9 @@ final class QQAPI {
      * @return 获取最近联系人列表返回信息
      */
     BaseRsp<ResultGetRecentList> get_recent_list2() {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/get_recent_list2");
-        request.header("Origin", "http://d1.web2.qq.com");
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/get_recent_list2");
+        request.header("Origin", "https://d1.web2.qq.com");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         request.content("r", QQTools.GSON.toJson(new BaseReq(null, null, vfwebqq, psessionid)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetRecentList>>() {
         }.getType());
@@ -210,12 +210,12 @@ final class QQAPI {
      * @return 获取在线好友列表返回信息
      */
     BaseRsp<ResultGetOnlineBuddies> get_online_buddies2() {
-        XRequest request = XRequest.GET("http://d1.web2.qq.com/channel/get_online_buddies2");
+        XRequest request = XRequest.GET("https://d1.web2.qq.com/channel/get_online_buddies2");
         request.query("clientid", 53999199);
         request.query("psessionid", psessionid);
         request.query("t", System.currentTimeMillis());
         request.query("vfwebqq", vfwebqq);
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetOnlineBuddies>>() {
         }.getType());
     }
@@ -226,9 +226,9 @@ final class QQAPI {
      * @return 监听消息返回信息
      */
     BaseRsp<ResultPoll> poll2() {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/poll2");
-        request.header("Origin", "http://d1.web2.qq.com");
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/poll2");
+        request.header("Origin", "https://d1.web2.qq.com");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         request.content("r", QQTools.GSON.toJson(new BaseReq(null, "", null, psessionid)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultPoll>>() {
         }.getType());
@@ -241,13 +241,13 @@ final class QQAPI {
      * @return 用户信息
      */
     BaseRsp<ResultUser> get_friend_info2(long friendId) {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/get_friend_info2");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/get_friend_info2");
         request.query("clientid", 53999199);
         request.query("psessionid", psessionid);
         request.query("t", System.currentTimeMillis());
         request.query("tuin", friendId);
         request.query("vfwebqq", vfwebqq);
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultUser>>() {
         }.getType());
     }
@@ -259,11 +259,11 @@ final class QQAPI {
      * @return 用户个性签名
      */
     BaseRsp<ArrayList<ResultLongNick>> get_single_long_nick2(long friendId) {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/get_single_long_nick2");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/get_single_long_nick2");
         request.query("t", System.currentTimeMillis());
         request.query("tuin", friendId);
         request.query("vfwebqq", vfwebqq);
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ArrayList<ResultLongNick>>>() {
         }.getType());
     }
@@ -275,11 +275,11 @@ final class QQAPI {
      * @return 群信息
      */
     BaseRsp<ResultGetGroupInfo> get_group_info_ext2(long groupCode) {
-        XRequest request = XRequest.GET("http://s.web2.qq.com/api/get_group_info_ext2");
+        XRequest request = XRequest.GET("https://s.web2.qq.com/api/get_group_info_ext2");
         request.query("gcode", groupCode);
         request.query("t", System.currentTimeMillis());
         request.query("vfwebqq", this.vfwebqq);
-        request.header("Referer", "http://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
+        request.header("Referer", "https://s.web2.qq.com/proxy.html?v=20130916001&callback=1&id=1");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetGroupInfo>>() {
         }.getType());
     }
@@ -291,13 +291,13 @@ final class QQAPI {
      * @return 讨论组信息
      */
     BaseRsp<ResultGetDiscuInfo> get_discu_info(long discussId) {
-        XRequest request = XRequest.GET("http://d1.web2.qq.com/channel/get_discu_info");
+        XRequest request = XRequest.GET("https://d1.web2.qq.com/channel/get_discu_info");
         request.query("clientid", 53999199);
         request.query("did", discussId);
         request.query("psessionid", psessionid);
         request.query("t", System.currentTimeMillis());
         request.query("vfwebqq", vfwebqq);
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), new TypeToken<BaseRsp<ResultGetDiscuInfo>>() {
         }.getType());
     }
@@ -310,9 +310,9 @@ final class QQAPI {
      * @return 发送好友消息返回信息
      */
     BaseRsp send_buddy_msg2(long friendId, String content) {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/send_buddy_msg2");
-        request.header("Origin", "http://d1.web2.qq.com");
-        request.header("Referer", "http://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/send_buddy_msg2");
+        request.header("Origin", "https://d1.web2.qq.com");
+        request.header("Referer", "https://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
         request.content("r", QQTools.GSON.toJson(new ReqSendFriendMsg(friendId, content, psessionid)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), BaseRsp.class);
     }
@@ -325,9 +325,9 @@ final class QQAPI {
      * @return 发送群消息返回信息
      */
     BaseRsp send_qun_msg2(long groupId, String content) {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/send_qun_msg2");
-        request.header("Origin", "http://d1.web2.qq.com");
-        request.header("Referer", "http://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/send_qun_msg2");
+        request.header("Origin", "https://d1.web2.qq.com");
+        request.header("Referer", "https://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
         request.content("r", QQTools.GSON.toJson(new ReqSendGroupMsg(groupId, content, psessionid)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), BaseRsp.class);
     }
@@ -340,8 +340,8 @@ final class QQAPI {
      * @return 发送讨论组消息返回信息
      */
     BaseRsp send_discu_msg2(long discussId, String content) {
-        XRequest request = XRequest.POST("http://d1.web2.qq.com/channel/send_discu_msg2");
-        request.header("Referer", "http://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
+        XRequest request = XRequest.POST("https://d1.web2.qq.com/channel/send_discu_msg2");
+        request.header("Referer", "https://d1.web2.qq.com/cfproxy.html?v=20151105001&callback=1");
         request.content("r", QQTools.GSON.toJson(new ReqSendDiscussMsg(discussId, content, psessionid)));
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), BaseRsp.class);
     }
@@ -353,12 +353,12 @@ final class QQAPI {
      * @return 更改登录状态返回信息
      */
     BaseRsp change_status2(String status) {
-        XRequest request = XRequest.GET("http://d1.web2.qq.com/channel/change_status2");
+        XRequest request = XRequest.GET("https://d1.web2.qq.com/channel/change_status2");
         request.query("clientid", 53999199);
         request.query("newstatus", status);
         request.query("psessionid", psessionid);
         request.query("t", System.currentTimeMillis());
-        request.header("Referer", "http://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
+        request.header("Referer", "https://d1.web2.qq.com/proxy.html?v=20151105001&callback=1&id=2");
         return QQTools.GSON.fromJson(XTools.http(httpOption, request).string(), BaseRsp.class);
     }
 }
